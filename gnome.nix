@@ -5,7 +5,8 @@
   home.packages = with pkgs.gnomeExtensions; [
     gsconnect
     tray-icons-reloaded
-        # Include the results of the hardware scan.
+    pop-shell
+
   ];
 
   dconf.settings = {

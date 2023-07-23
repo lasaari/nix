@@ -13,6 +13,7 @@
       allowUnfree = true;
     };
   };
+  programs.steam.enable = true;
   home-manager.useGlobalPkgs = true;
   home-manager.users.lasse = { pkgs, ... }: {
 
@@ -43,6 +44,9 @@
       thunderbird
       discord
       fractal
+ 
+      # Steam
+      steam
 
       # IDE
       neovim
@@ -58,6 +62,9 @@
       keepassxc
       bat
       cloudflared
+
+      # Photography
+      darktable
 
       # Fonts
       (nerdfonts.override { fonts = [ "FiraCode" ]; })

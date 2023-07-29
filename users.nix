@@ -17,11 +17,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.lasse = { pkgs, ... }: {
 
-    imports =
-      [
-      ./gnome.nix
-      ];
-
     home.stateVersion = "23.05";
     home.packages = with pkgs; [
       # Terminal
@@ -62,6 +57,9 @@
       keepassxc
       bat
       cloudflared
+
+      xclip
+      wl-clipboard
 
       # Photography
       darktable
@@ -156,6 +154,8 @@
       EDITOR = "nvim";
       SHELL = ''${pkgs.zsh}/bin/zsh'';
       NIXPKGS_ALLOW_UNFREE = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+
     };
   };
 

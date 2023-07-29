@@ -46,20 +46,15 @@
     LC_TIME = "fi_FI.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
-  # Enable the Budgie Desktop environment.
+  services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome = {
-    enable = true;
-    extraGSettingsOverrides = ''
-      [org.gnome.mutter]
-      experimental-features=['scale-monitor-framebuffer']
-    '';
-    extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
-  };
+  services.xserver.desktopManager.plasma5.enable = true;
+  programs.dconf.enable = true;
+  services.xserver.displayManager.defaultSession = "plasmawayland";
+
+  hardware.bluetooth.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     layout = "fi";

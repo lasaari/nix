@@ -125,6 +125,19 @@ lspconfig.gopls.setup {
       },
     },
   }
+
+lspconfig.clangd.setup {
+    cmd = {"clangd"},
+    filetypes = {"c", "cpp", "objc", "objcpp"},
+    root_dir = util.root_pattern(
+          '.clangd',
+          '.clang-tidy',
+          '.clang-format',
+          'compile_commands.json',
+          'compile_flags.txt',
+          'configure.ac',
+          '.git'
+        ) }
 -- local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 -- if status_ok then
 --   M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)

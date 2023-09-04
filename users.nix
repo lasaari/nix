@@ -1,11 +1,14 @@
 { config, pkgs, ... }:
 
+let
+  unstable = import <unstable> {};
+in
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lasse = {
     isNormalUser = true;
     description = "Lasse";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
   };
 
   nixpkgs = {
@@ -32,6 +35,9 @@
       firefox
       chromium
 
+      # Video
+      mpv
+
       # Notes
       obsidian
 
@@ -52,11 +58,15 @@
       gcc
       glibc.static
       nodejs-18_x
+      ansible
+      terraform
 
       # Utilities 
       keepassxc
       bat
       cloudflared
+      syncthing
+      unstable.syncthingtray
 
       xclip
       wl-clipboard
@@ -71,7 +81,7 @@
     # Syncthing
     services.syncthing = {
       enable = true;
-      tray.enable = true;
+      tray.enable = false;
     };
 
     # ZSH
@@ -112,6 +122,10 @@
       source = ./nvim;
       recursive = true;
     };
+    home.file.".config/sway" = {
+        source = ./sway;
+        recursive = true;
+      };
 
     # Configure alacritty
 
@@ -148,7 +162,16 @@
         };
       };
     };
-
+    # Cursor fix
+    home.pointerCursor = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 24;
+      x11 = {
+        enable = true;
+        defaultCursor = "Adwaita";
+      };
+    };
     # Variables
     home.sessionVariables = {
       EDITOR = "nvim";

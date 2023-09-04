@@ -19,6 +19,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -27,6 +28,34 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 443 22000 ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
+    trustedInterfaces = [ "tailscale0" ];
+
+  };
+
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+
+
+    };
+    extraConfig = ''
+    AllowAgentForwarding yes
+    AllowTcpForwarding yes
+    AllowStreamLocalForwarding yes
+    DisableForwarding no
+    '';
+  };
+
+  services.tailscale.enable = true;
+
+
 
   # Set your time zone.
   time.timeZone = "Europe/Helsinki";
@@ -49,9 +78,40 @@
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      wf-recorder
+      mako # notification daemon
+      grim
+      slurp
+      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+      wayland
+      xdg-utils
+      glib
+      gnome3.adwaita-icon-theme
+      swaylock
+      swayidle
+      wl-clipboard
+      bemenu
+      wdisplays
+      rofi
+      blueberry # Bluetooth gui
+    ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+    '';
+  }; 
   programs.dconf.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
 
   hardware.bluetooth.enable = true;
 
@@ -95,6 +155,24 @@
     };
   };
 
+
+  # Virtualisation
+  virtualisation = {
+      podman = {
+        enable = true;
+
+        # Create a `docker` alias for podman, to use it as a drop-in replacement
+        dockerCompat = true;
+
+        # Required for containers under podman-compose to be able to talk to each other.
+        defaultNetwork.settings.dns_enabled = true;
+        # For Nixos version > 22.11
+        #defaultNetwork.settings = {
+        #  dns_enabled = true;
+        #};
+      };
+    };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -103,6 +181,14 @@
     git
     neovim
     alacritty
+    helix
+    
+    clang
+    clang-tools
+    cmake
+    unzip
+    zlib
+
   ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

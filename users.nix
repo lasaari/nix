@@ -38,17 +38,9 @@ in
       # Video
       mpv
 
-      # Notes
-      obsidian
-
       # Communication
       thunderbird
-      discord
-      fractal
  
-      # Steam
-      steam
-
       # IDE
       neovim
       ripgrep
@@ -59,14 +51,11 @@ in
       glibc.static
       nodejs-18_x
       ansible
-      terraform
 
       # Utilities 
       keepassxc
       bat
-      cloudflared
       syncthing
-      unstable.syncthingtray
 
       xclip
       wl-clipboard
@@ -81,14 +70,13 @@ in
     # Syncthing
     services.syncthing = {
       enable = true;
-      tray.enable = false;
     };
 
     # ZSH
     programs.zsh = {
       enable = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       enableCompletion = true;
       autocd = true;
       dotDir = ".config/zsh";

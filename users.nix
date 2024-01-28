@@ -33,13 +33,9 @@ in
 
       # Browsers
       firefox
-      chromium
 
       # Video
       mpv
-
-      # Communication
-      thunderbird
  
       # IDE
       neovim
@@ -51,11 +47,13 @@ in
       glibc.static
       nodejs-18_x
       ansible
+      pulumi
 
       # Utilities 
       keepassxc
       bat
       syncthing
+      bitwarden-cli
 
       xclip
       wl-clipboard
@@ -158,6 +156,13 @@ in
       x11 = {
         enable = true;
         defaultCursor = "Adwaita";
+      };
+    };
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Breeze-Dark";
+        package = pkgs.libsForQt5.breeze-gtk;
       };
     };
     # Variables

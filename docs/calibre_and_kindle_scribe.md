@@ -21,7 +21,7 @@ services.gvfs.enable = true;
 
 Make sure following packages are installed
 
-´´´nix
+```nix
 environment.systemPackages = with pkgs; [
   calibre
   wineWowPackages.stable

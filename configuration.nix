@@ -55,6 +55,7 @@
 
   services.tailscale.enable = true;
 
+  services.gvfs.enable = true;
 
 
   # Set your time zone.
@@ -181,13 +182,15 @@
     git
     neovim
     alacritty
-    helix
     
     clang
     clang-tools
     cmake
     unzip
     zlib
+
+    wineWowPackages.stable
+    winetricks
 
   ];
 

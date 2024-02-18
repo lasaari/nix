@@ -62,7 +62,7 @@ in
       darktable
 
       # Documents
-      (unstable.calibre.overrideAttrs (attrs: {
+      (calibre.overrideAttrs (attrs: {
         preFixup = (
           builtins.replaceStrings
             [

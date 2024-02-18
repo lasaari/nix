@@ -31,12 +31,16 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 443 22000 ];
+    allowedTCPPorts = [ 
+      22 
+      443 
+    ];
     allowedUDPPorts = [ config.services.tailscale.port ];
     trustedInterfaces = [ "tailscale0" ];
 
   };
 
+  services.tailscale.enable = true;
 
   services.openssh = {
     enable = true;
@@ -53,7 +57,6 @@
     '';
   };
 
-  services.tailscale.enable = true;
 
   services.gvfs.enable = true;
 

@@ -27,6 +27,9 @@ in
       zsh
       fzf
       zsh-powerlevel10k
+      ugrep
+      dialog
+      sqlite
 
       # Launcher
       sway-launcher-desktop

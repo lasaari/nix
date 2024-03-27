@@ -10,15 +10,13 @@
       # Include the results of the hardware scan.
       <home-manager/nixos>
       ./hardware-configuration.nix
-      ./yoga.nix
+      ./current-machine.nix
       ./users.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -30,7 +28,7 @@
   networking.networkmanager.enable = true;
 
   networking.firewall = {
-    enable = true;
+    enable = false;
     allowedTCPPorts = [ 
       22 
       443 

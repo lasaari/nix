@@ -17,6 +17,11 @@ in
   services.ollama.acceleration = "rocm";
   services.ollama.listenAddress = "0.0.0.0:11434";
 
+  # Disable suspend
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

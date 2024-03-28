@@ -51,6 +51,7 @@ in
       nodejs-18_x
       ansible
       pulumi
+      dbeaver
 
       # Utilities 
       keepassxc
@@ -169,6 +170,18 @@ in
         };
       };
     };
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+        };
+      };
+    };
+
+    
+
+
     # Cursor fix
     home.pointerCursor = {
       name = "Adwaita";
@@ -185,7 +198,16 @@ in
         name = "Breeze-Dark";
         package = pkgs.libsForQt5.breeze-gtk;
       };
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
+      };
+      cursorTheme = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
+      };
     };
+
     # Variables
     home.sessionVariables = {
       EDITOR = "nvim";

@@ -104,6 +104,7 @@
       wdisplays
       rofi
       blueberry # Bluetooth gui
+      light
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -192,6 +193,7 @@
 
     wineWowPackages.stable
     winetricks
+    pavucontrol
 
   ];
 

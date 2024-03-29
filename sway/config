@@ -24,8 +24,8 @@ set $launcher rofi \
 # # Shows a combined list of the applications with desktop files and
 # # executables from PATH.
 # # TODO: add window with the next release of rofi-wayland
-set $menu $launcher -show combi -combi-modes drun#run -modes combi
-
+# set $menu $launcher -show combi -combi-modes drun#run -modes combi
+set $menu exec $term --class launcher -e sway-launcher-desktop
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 # for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10

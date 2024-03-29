@@ -8,7 +8,7 @@ in
   users.users.lasse = {
     isNormalUser = true;
     description = "Lasse";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" "render" "audio"];
   };
 
   nixpkgs = {

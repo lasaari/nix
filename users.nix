@@ -34,6 +34,9 @@ in
       # Launcher
       sway-launcher-desktop
 
+      # Notes
+      logseq
+
       # Browsers
       firefox
 

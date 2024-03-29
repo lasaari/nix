@@ -17,6 +17,11 @@ in
   services.ollama.enable = true;
   services.ollama.acceleration = "rocm";
   services.ollama.listenAddress = "0.0.0.0:11434";
+  services.ollama.package = unstable.ollama;
+
+  services.auto-cpufreq = {
+    enable = true;
+  };
 
   # Disable suspend
   systemd.targets.sleep.enable = false;

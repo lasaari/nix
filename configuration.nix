@@ -56,6 +56,8 @@
   };
 
 
+  services.fwupd.enable = true;
+
   services.gvfs.enable = true;
 
 

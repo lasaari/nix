@@ -19,10 +19,6 @@ in
   services.ollama.listenAddress = "0.0.0.0:11434";
   services.ollama.package = unstable.ollama;
 
-  services.auto-cpufreq = {
-    enable = true;
-  };
-
   # Disable suspend
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
@@ -34,6 +30,13 @@ in
     #  wget
 
   ];
+
+  boot.kernelParams = [
+    "initcall_blacklist=acpi_cpufreq_init"
+    "amd_pstate.shared_mem=1"
+    "amd_pstate=active"
+  ]; 
+  boot.kernelModules = [ "amd-pstate" ];
 
   # Enable amd gpu
   boot.initrd.kernelModules = [ "amdgpu" ];

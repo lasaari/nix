@@ -6,7 +6,7 @@ let
 in
 {
   networking.hostName = "desk"; # Define your hostname.
-  # networking.interfaces.enp10s0.useDHCP = false;
+  # networking.interfaces.enp10s0.wakeOnLan.enable = true;
   # networking.interfaces.enp10s0.ipv4.addresses = [ {
   #   address = "10.0.0.180";
   #   prefixLength = 24;
@@ -35,6 +35,8 @@ in
     "initcall_blacklist=acpi_cpufreq_init"
     "amd_pstate.shared_mem=1"
     "amd_pstate=active"
+    "pcie_aspm=off"
+
   ]; 
   boot.kernelModules = [ "amd-pstate" ];
 
@@ -45,8 +47,11 @@ in
   systemd.tmpfiles.rules = [
       "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     ];
+
+  hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     rocmPackages.clr.icd
+    rocm-opencl-runtime
   ];
   hardware.opengl.driSupport = true; # This is already enabled by default
   hardware.opengl.driSupport32Bit = true; # For 32 bit applications

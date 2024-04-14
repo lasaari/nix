@@ -269,6 +269,8 @@ output eDP-1 scale 1.5
 output eDP-1 pos 200 1440
 output 'Lenovo Group Limited LEN Y27q-20 0x0000374B' mode 2560x1440@120.000Hz
 output 'Lenovo Group Limited LEN Y27q-20 0x0000374B' pos 0 0
+output DP-1 mode 2560x1440@165.000Hz
+output DP-1 adaptive_sync off
 
 #
 # Title bar

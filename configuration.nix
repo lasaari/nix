@@ -193,6 +193,7 @@
     unzip
     zlib
 
+    pkgsi686Linux.gperftools
     wineWowPackages.stable
     winetricks
     pavucontrol

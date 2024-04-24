@@ -3,21 +3,28 @@
 
 let
   unstable = import <unstable> {};
+
+  # Get ollama 1.30
+  pkgs-with-old-ollama = import (builtins.fetchGit {
+    name = "old-ollama";
+    url = "https://github.com/nixos/nixpkgs/";
+    ref = "refs/heads/nixos-unstable";
+    rev = "da83c7ae68df9561b49598292b38294bca868dc9";
+  }) {
+    config = config.nixpkgs.config;
+  };
 in
 {
-  networking.hostName = "desk"; # Define your hostname.
-  # networking.interfaces.enp10s0.wakeOnLan.enable = true;
-  # networking.interfaces.enp10s0.ipv4.addresses = [ {
-  #   address = "10.0.0.180";
-  #   prefixLength = 24;
-  # }];
-  # networking.defaultGateway = "10.0.0.1";
-  # networking.nameservers = [ "10.0.0.3" ];
+  networking.hostName = "desk";
+
+  powerManagement.enable = true;
+
+  # Enable Ollama
 
   services.ollama.enable = true;
   services.ollama.acceleration = "rocm";
   services.ollama.listenAddress = "0.0.0.0:11434";
-  services.ollama.package = unstable.ollama;
+  services.ollama.package = pkgs-with-old-ollama.ollama;
 
   # Disable suspend
   systemd.targets.sleep.enable = false;

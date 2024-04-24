@@ -36,6 +36,7 @@ in
 
       # Notes
       logseq
+      unstable.appflowy
 
       # Browsers
       firefox
